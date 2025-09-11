@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Diaryx Optional Properties - Health</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <ul class="metadata">
+            <li><strong>title:</strong> Diaryx Optional Properties - Health</li>
+            <li><strong>author:</strong> Adam Harris</li>
+            <li><strong>created:</strong> August 29, 2025, 12:07pm (UTC-6)</li>
+            <li>
+                <strong>updated:</strong> September 10, 2025, 09:49pm (UTC-6)
+            </li>
+            <li><strong>visibility:</strong> public</li>
+            <li>
+                <strong>format:</strong>
+                <a href="https://spec.commonmark.org/0.31.2/"
+                    >CommonMark (Markdown)</a
+                >
+            </li>
+            <li>
+                <strong>part_of:</strong>
+                <a href="diaryx-writing-specification.html"
+                    >Diaryx Writing Specification</a
+                >
+            </li>
+            <li>
+                <strong>reachable:</strong>
+                <a href="https://github.com/adammharris/diaryx-specification"
+                    >Diaryx Spec Github Repo</a
+                >
+            </li>
+        </ul>
+        <main class="content">
+            <h1>Diaryx Optional Properties - Health</h1>
+            <p>
+                Diaryx provides optional support for health-related properties,
+                for those who use documents to log health data.
+            </p>
+            <h2>Mood</h2>
+            <h3><code>mood</code></h3>
+            <p>One-word description of feeling.</p>
+            <pre><code class="language-yaml">mood: &quot;content&quot; # :-)
+mood: &quot;calm&quot; # :)
+mood: &quot;numb&quot; # :|
+</code></pre>
+            <h3><code>mood_scale</code></h3>
+            <p>Rating of feeling from one to ten.</p>
+            <pre><code class="language-yaml">mood_scale: &quot;8/10&quot; #feeling pretty good!
+mood_scale: &quot;3/10&quot; #feeling sad :(
+mood_scale: &quot;11/10&quot; #invalid, too high
+mood_scale: &quot;1/5&quot; #invalid, must be out of 10
+</code></pre>
+            <h2>Activity</h2>
+            <h3><code>activity_distance</code></h3>
+            <p>
+                If an activity you are doing takes place over distance, you can
+                record the distance here. Supported units include
+                <code>mi</code>, <code>km</code>, <code>yd</code>, and
+                <code>m</code>.
+            </p>
+            <pre><code class="language-yaml">activity_distance: &quot;2mi&quot; # nice run!
+activity_distance: &quot;1.2 km&quot; #good job! (space between number and unit is optional)
+activity_distance: &quot;5 parsecs&quot; #invalid unit
+</code></pre>
+            <h3><code>activity_type</code></h3>
+            <p>Record the type of activity you are doing here.</p>
+            <pre><code class="language-yaml">activity_type: &quot;running&quot; # going fast!
+activity_type: &quot;HIIT&quot; # working hard!
+activity_type: &quot;dance&quot; # got moves?
+</code></pre>
+            <h3><code>calories_burned</code></h3>
+            <p>
+                If you track the number of calories you burn during an activity,
+                you can record it here.
+            </p>
+            <pre><code class="language-yaml">calories_burned: 1 #did you move today?
+calories_burned: 1000 #wow, slow down
+calories_burned: -5 #invalid, must be &gt;0
+</code></pre>
+            <h3><code>steps</code></h3>
+            <p>
+                If you track a number of steps you take, you can record that
+                number here.
+            </p>
+            <pre><code class="language-yaml">steps: 100 #sedentary
+steps: 20000 #many
+steps: -100 #invalid, must be &gt;0
+</code></pre>
+            <h2>Sleep</h2>
+            <h3><code>sleep_hours</code></h3>
+            <p>
+                Record the number of hours you sleep here. Single floating-point
+                or integer number.
+            </p>
+            <pre><code class="language-yaml">sleep_hours: 8 # good sleep!
+sleep_hours: 7.5 #realistic
+sleep_hours: 1.45 #invalid, only one decimal allowed
+sleep_hours: -3 #invalid, must be &gt;0
+</code></pre>
+            <h3><code>sleep_scale</code></h3>
+            <p>
+                Rate the quality of your sleep from 1 to 10. Same rules as
+                <code>mood_scale</code>
+            </p>
+            <h2>Vitals</h2>
+            <h3><code>blood_pressure</code></h3>
+            <p>
+                Record systolic and diastolic blood pressure in the format
+                similar to <code>120/80</code>
+            </p>
+            <pre><code class="language-yaml">blood_pressure: &quot;140/100&quot; #high
+blood_pressure: &quot;120.1/80.7&quot; #invalid, only integers
+blood_pressure: &quot;120 / 80&quot; # spaces are optional
+blood_pressure: &quot;120-80&quot; #invalid, must be a /
+</code></pre>
+            <h3><code>heart_rate</code></h3>
+            <p>Record heart rate in beats per minute (bpm). Integer.</p>
+            <pre><code class="language-yaml">heart_rate: 60 #resting rate
+heart_rate: 400 #hummingbird
+heart_rate: -80 #invalid, must be &gt;0
+</code></pre>
+            <h3><code>body_weight</code></h3>
+            <p>
+                Record your body weight. Floating point number or integer.
+                Supports two units: <code>lbs</code> and <code>kg</code>
+            </p>
+            <pre><code class="language-yaml">body_weight: &quot;130lbs&quot; #average woman
+body_weight: &quot;185 lbs&quot; # space optional
+body_weight: &quot;55kg&quot; #artemis fowl
+</code></pre>
+            <h2>Nutrition</h2>
+            <h3><code>calories_consumed</code></h3>
+            <p>
+                Record the number of calories consumed, for those who count
+                their calories. Integer &gt;0.
+            </p>
+            <pre><code class="language-yaml">calories_consumed: 2000 #recommended daily amount
+</code></pre>
+            <h3><code>carbs_consumed</code></h3>
+            <p>
+                Count the gram amount of carbohydrates consumed. Integer &gt;0.
+            </p>
+            <h3><code>fats_consumed</code></h3>
+            <p>Count the gram amount of fat consumed. Integer &gt;0.</p>
+            <h3><code>proteins_consumed</code></h3>
+            <p>Count the gram amount of protein consumed. Integer &gt;0.</p>
+            <h3><code>water_consumed</code></h3>
+            <p>
+                Count the amount of water consumed. Supports four units:
+                <code>glasses</code>, <code>cups</code>, <code>grams</code>, and
+                <code>liters</code>.
+            </p>
+            <pre><code class="language-yaml">water_consumed: &quot;8 glasses&quot; #good job!
+water_consumed: &quot;1liter&quot; #thirsty! Space optional, `liter` is valid when the number is 1
+</code></pre>
+        </main>
+    </body>
+</html>
