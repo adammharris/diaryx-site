@@ -2,13 +2,13 @@
 title: What is Diaryx?
 author: Adam Harris
 created: '2025-08-26T20:43:49+00:00'
-updated: '2025-09-25T15:47:39.624Z'
+updated: '2025-09-26T11:15:00+06:00'
 visibility:
   - public
   - Digital journal users
   - Markdown users
 format: '[CommonMark (Markdown)](https://spec.commonmark.org/0.31.2/)'
-reachable: '[Diaryx Website](https://www.diaryx.net)'
+reachable: '[Diaryx Website](https://www.diaryx.org)'
 ---
 
 # What is Diaryx?
@@ -20,7 +20,9 @@ Diaryx is a project that seeks to spread awareness of the power of writing to ch
 2. the Diaryx application, which uses the specification,
 3. and an upcoming persistent identifier (PID) system to make permanence accessible.
 
-To read about the writing standards, the Diaryx Writing Specification, visit [spec.diaryx.org](https://spec.diaryx.nrget). To use the Diaryx app, visit [app.diaryx.org](https://app.diaryx.org).
+To read about the writing standards, the Diaryx Writing Specification, visit [spec.diaryx.org](https://spec.diaryx.org). To use the Diaryx app, visit [app.diaryx.org](https://app.diaryx.org).
+
+The creator of Diaryx is Adam Harris. He is building Diaryx in public. You can read his weekly newsletter at [adammharris.substack.com](https://adammharris.substack.com) (if you don't want to put your email in, just click "No thanks" and you will be able to see all the content).
 
 ## Philosophy
 
@@ -42,7 +44,7 @@ With that in mind, consider the following statements of belief:
 
 ## How does it do that?
 
-Right now, Diaryx is in its infancy. Neither the writing specification nor the Diaryx software are ready for widespread use. It boils down to a Tauri-based markdown editor and a loosely-defined YAML frontmatter schema. But I have big dreams!
+Right now, Diaryx is in its infancy. Neither the writing specification nor the Diaryx software are ready for widespread use. It boils down to a web-based markdown editor and a YAML frontmatter schema. But there are big dreams!
 
 Right now, the Diaryx specification is probably most useful for power users of the [Obsidian](https://obsidian.md) app. (Click [here](https://github.com/adammharris/diaryx-specification/blob/main/Diaryx-Obsidian%20Workflow.md) to see how!) But eventually it will be the universal format for all personal writing, and perhaps even more forms of self-quantifying.
 
