@@ -50,4 +50,4 @@ Right now, the Diaryx specification is probably most useful for power users of t
 
 # Contact me!
 
-If you have questions about Diaryx of any kind, or just want to chat, feel free to email me at [adam@diaryx.net](mailto:adam@diaryx.net).
+If you have questions about Diaryx of any kind, or just want to chat, feel free to email me at [adam@diaryx.org](mailto:adam@diaryx.org).
