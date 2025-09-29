@@ -1,8 +1,8 @@
 ---
-title: What is Diaryx?
+title: Diaryx
 author: Adam Harris
 created: '2025-08-26T20:43:49+00:00'
-updated: '2025-09-26T11:15:00+06:00'
+updated: '2025-09-29T11:49:15+06:00'
 visibility:
   - public
   - Digital journal users
@@ -11,43 +11,23 @@ format: '[CommonMark (Markdown)](https://spec.commonmark.org/0.31.2/)'
 reachable: '[Diaryx Website](https://www.diaryx.org)'
 ---
 
-# What is Diaryx?
+![Diaryx banner](diaryx-banner.png)
 
-The word "Diaryx" is like 'diary' plus the letter 'x'! Like a futuristic version of a diary. (It is pronounced just like it looks: "diary - x.")
+# Writing *is* connection.
 
-Diaryx is a project that seeks to spread awareness of the power of writing to change hearts and minds for the better. To do this, it provides:
-1. the Diaryx Writing Specification, a useful and open writing standard,
-2. the Diaryx application, which uses the specification,
-3. and an upcoming persistent identifier (PID) system to make permanence accessible.
+That's the central point of Diaryx, and it's more revolutionary than it seems.
 
-To read about the writing standards, the Diaryx Writing Specification, visit [spec.diaryx.org](https://spec.diaryx.org). To use the Diaryx app, visit [app.diaryx.org](https://app.diaryx.org).
+- [Read the specification](https://spec.diaryx.org)
+- [Use the web app](https://app.diaryx.org)
 
-The creator of Diaryx is Adam Harris. He is building Diaryx in public. You can read his weekly newsletter at [adammharris.substack.com](https://adammharris.substack.com) (if you don't want to put your email in, just click "No thanks" and you will be able to see all the content).
+## Write with purpose, and keep it forever.
 
-## Philosophy
+Writing is the driver of human innovation, because it connects minds and hearts together. But in the digital age, we have failed to recognize what makes writing special. Put simply, writing has become cheap.
 
-There was a time in history when the ability to read and write was rare and valued. Eventually, nearly everyone learned how to read and write, which led to a revolution— primarily in the way people could think and how they could express themselves. Then, like clockwork, followed advancements in the sciences and the arts.
+Diaryx takes the focus off of content and back on connection. It embeds metadata into the document itself, including information about the intended visibility of the document, enabling role-based access to your writing and radical portability.
 
-With that in mind, consider the following statements of belief:
+In the future, Diaryx will provide persistent identifiers (PIDs) for your writing, built on the decentralized and battle-tested ARK framework, so you won't even need to use the Diaryx platform in order to own your writing for good.
 
-- *We believe that the ability to read and write were key to all of the technological advancements that we benefit from today.*
-- *We believe that one of the most powerful ways to benefit humanity today is to increase their literacy.*
-- *We believe that personal writing is important for three reasons: first, metacognition; second, structure; and third, consistency.*
+## Project Status
 
-**Metacognition** is the ability to think about your own thoughts. You can look inside yourself and see what is actually going on in there! Writing in a diary or journal makes this easier by helping you see your thoughts outside yourself— on paper.
-
-**Structure** is the antidote to unhelpful thinking. When we observe our own thoughts, we may see things we don't like. Writing helps us introduce structure into our mind by putting our thoughts through a filter, and into physical, seeable text.
-
-**Consistency** helps you keep the good in and the bad out. You may change from day to day, but your writing doesn't change unless you choose to change it. Therefore, writing can be like a ship's anchor— when the storms of life come, you have the option to read what you have written and stay strong.
-
-*Diaryx is designed to help you in these three ways: metacognition, structure, and consistency.*
-
-## How does it do that?
-
-Right now, Diaryx is in its infancy. Neither the writing specification nor the Diaryx software are ready for widespread use. It boils down to a web-based markdown editor and a YAML frontmatter schema. But there are big dreams!
-
-Right now, the Diaryx specification is probably most useful for power users of the [Obsidian](https://obsidian.md) app. (Click [here](https://github.com/adammharris/diaryx-specification/blob/main/Diaryx-Obsidian%20Workflow.md) to see how!) But eventually it will be the universal format for all personal writing, and perhaps even more forms of self-quantifying.
-
-# Contact me!
-
-If you have questions about Diaryx of any kind, or just want to chat, feel free to email me at [adam@diaryx.org](mailto:adam@diaryx.org).
+Right now, Diaryx is in its infancy. Neither the writing specification nor the Diaryx software are ready for widespread use, but we are actively seeking feedback and support. Please email [contact@diaryx.org](mailto:contact@diaryx.org) if you have any feedback or help to offer!
