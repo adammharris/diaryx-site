@@ -1,0 +1,105 @@
+---
+import { Image } from "astro:assets";
+interface Props {
+  iconSrc: string;
+  title: string;
+  size?: "xlarge" | "large" | "medium" | "small";
+}
+
+const { iconSrc, title, size = "large" } = Astro.props;
+---
+
+<div class={`hero hero-${size}`}>
+  <h1 class="hero-title">{title}</h1>
+  <Image src={iconSrc} alt={`${title} icon`} class="hero-icon" />
+</div>
+
+<style>
+  .hero {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0 0 2rem;
+  }
+
+  .hero-xlarge {
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .hero-large {
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero-medium {
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-small {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-icon {
+    flex-shrink: 0;
+    display: block;
+    height: auto;
+  }
+
+  .hero-xlarge .hero-icon {
+    width: clamp(6rem, 18vw, 10rem);
+  }
+
+  .hero-large .hero-icon {
+    width: clamp(5rem, 15vw, 8rem);
+  }
+
+  .hero-medium .hero-icon {
+    width: clamp(3rem, 10vw, 4.5rem);
+  }
+
+  .hero-small .hero-icon {
+    width: clamp(2.5rem, 8vw, 3.5rem);
+  }
+
+  .hero-title {
+    margin: 0;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--page-fg);
+  }
+
+  .hero-xlarge .hero-title {
+    font-size: clamp(3.5rem, 12vw, 7rem);
+  }
+
+  .hero-medium .hero-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .hero-small .hero-title {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+  }
+
+  @media (max-width: 48rem) {
+    .hero {
+      gap: 1rem;
+    }
+
+    .hero-xlarge {
+      gap: 1.5rem;
+    }
+
+    .hero-large {
+      gap: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 10vw, 3rem);
+    }
+  }
+</style>
