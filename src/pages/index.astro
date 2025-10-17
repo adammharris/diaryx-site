@@ -1,0 +1,22 @@
+---
+import DiaryxLayout from "../layouts/DiaryxLayout.astro";
+import { getEntry } from "astro:content";
+
+const index = await getEntry("diaryx", "diaryx-site");
+
+if (!index) {
+  throw new Error("Diaryx specification entry is missing");
+}
+
+const { Content, headings } = await index.render();
+const frontmatter = index.data;
+const trimFirstHeading =
+  Array.isArray(headings) &&
+  headings.length > 0 &&
+  headings[0]?.depth === 1 &&
+  headings[0]?.text.trim() === (frontmatter.title ?? "").trim();
+---
+
+<DiaryxLayout frontmatter={frontmatter} trimFirstHeading={trimFirstHeading}>
+  <Content />
+</DiaryxLayout>

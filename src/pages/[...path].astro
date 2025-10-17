@@ -1,0 +1,40 @@
+---
+import DiaryxLayout from "../layouts/DiaryxLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const diaryx = await getCollection("diaryx");
+
+  return diaryx
+    .filter((entry) => entry.id.endsWith(".md"))
+    .map((entry) => {
+      // Remove .md extension from the entry id to create the path
+      const path = entry.id.replace(/\.md$/, "");
+
+      return {
+        params: { path },
+        props: { entry },
+      };
+    });
+}
+
+const { entry } = Astro.props;
+
+if (!entry) {
+  return Astro.redirect("/404");
+}
+
+const { Content, headings } = await entry.render();
+const frontmatter = entry.data;
+
+// Check if first heading matches title (to avoid duplication)
+const trimFirstHeading =
+  Array.isArray(headings) &&
+  headings.length > 0 &&
+  headings[0]?.depth === 1 &&
+  headings[0]?.text.trim() === (frontmatter.title ?? "").trim();
+---
+
+<DiaryxLayout frontmatter={frontmatter} trimFirstHeading={trimFirstHeading}>
+  <Content />
+</DiaryxLayout>
