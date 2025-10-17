@@ -18,21 +18,13 @@ const formatFrontmatterValue = (value: unknown) => {
   return String(value ?? "");
 };
 
-const formatDateForDisplay = (value: unknown) => {
+const formatSummaryValue = (value: unknown) => {
   if (value instanceof Date) {
     return value.toLocaleDateString(undefined, {
       year: "numeric",
       month: "short",
       day: "numeric",
     });
-  }
-
-  return String(value ?? "");
-};
-
-const formatSummaryValue = (value: unknown) => {
-  if (value instanceof Date) {
-    return formatDateForDisplay(value);
   }
 
   if (Array.isArray(value)) {
@@ -42,120 +34,77 @@ const formatSummaryValue = (value: unknown) => {
   return String(value ?? "");
 };
 
-const summaryKeys = ["title", "author", "audience"] as const;
-type SummaryKey = (typeof summaryKeys)[number];
-const summaryLabels: Record<SummaryKey, string> = {
-  title: "Title",
-  author: "Author",
-  audience: "Audience",
+const truncate = (str: string, maxLength: number) => {
+  if (str.length <= maxLength) return str;
+  return str.slice(0, maxLength) + "...";
 };
 
 const frontmatterRecord = frontmatter as Record<string, unknown>;
 
-const summaryEntries = summaryKeys
-  .map((key) => {
-    const value = frontmatterRecord[key];
-    if (typeof value === "undefined" || value === null) {
-      return null;
-    }
+// Get key summary fields
+const title = frontmatterRecord.title ? String(frontmatterRecord.title) : null;
+const author = frontmatterRecord.author
+  ? String(frontmatterRecord.author)
+  : null;
+const audience = frontmatterRecord.audience
+  ? formatSummaryValue(frontmatterRecord.audience)
+  : null;
 
-    return {
-      key,
-      label: summaryLabels[key],
-      value: formatSummaryValue(value),
-    };
-  })
-  .filter(
-    (entry): entry is { key: SummaryKey; label: string; value: string } =>
-      entry !== null,
-  );
+// Create compact summary line for pill
+const pillParts = [
+  title ? truncate(title, 30) : null,
+  author ? truncate(author, 20) : null,
+  audience ? truncate(audience, 25) : null,
+].filter(Boolean);
 
-const summaryMap = summaryEntries.reduce<Partial<Record<SummaryKey, string>>>(
-  (acc, { key, value }) => {
-    acc[key] = value;
-    return acc;
-  },
-  {},
-);
+const pillSummary = pillParts.join(" • ");
 
-const detailedEntries = Object.entries(frontmatterRecord)
-  .filter(([key]) => !summaryKeys.includes(key as SummaryKey))
-  .map(([key, value]) => ({
-    key,
-    value: formatFrontmatterValue(value),
-  }));
+// Get all frontmatter entries for expanded view
+const allEntries = Object.entries(frontmatterRecord).map(([key, value]) => ({
+  key,
+  value: formatFrontmatterValue(value),
+}));
 
-const orderedEntries = [
-  ...summaryKeys
-    .filter((key) => key in frontmatterRecord)
-    .map((key) => ({
-      key,
-      value: formatFrontmatterValue(frontmatterRecord[key]),
-    })),
-  ...detailedEntries,
-];
-
-const createdLabel = formatDateForDisplay(frontmatter.created);
-const updatedLabel = formatDateForDisplay(frontmatter.updated);
-const metaSegments = [
-  summaryMap.author && `By ${summaryMap.author}`,
-  createdLabel && `Written on ${createdLabel}`,
-  updatedLabel && `Updated ${updatedLabel}`,
-  summaryMap.audience && `Audience ${summaryMap.audience}`,
-].filter(Boolean) as string[];
-const metaLine = metaSegments.join(" · ");
-const hasSummaryPills = Boolean(summaryMap.author || summaryMap.audience);
 const contentClass = `content-body${trimFirstHeading ? " trim-heading" : ""}`;
 ---
 
-<html>
+<html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{frontmatter.title}</title>
+    <meta
+      name="description"
+      content={frontmatter.description || frontmatter.title}
+    />
   </head>
   <body>
-    <div class="page-grid">
-      <main>
-        <!--<h1>{frontmatter.title}</h1>-->
-        <!--{metaLine && <p class="meta">{metaLine}</p>}-->
-        <div class={contentClass}>
+    <div class="page-container">
+      <main id="main-content">
+        <article class={contentClass}>
           <slot />
-        </div>
+        </article>
       </main>
-      <aside class="frontmatter-column">
-        <details class="frontmatter-menu">
-          <summary class="frontmatter-summary">
-            <span class="summary-label">Frontmatter</span>
-            {
-              summaryMap.title && (
-                <span class="summary-title">{summaryMap.title}</span>
-              )
-            }
-            {
-              hasSummaryPills && (
-                <span class="summary-pill-group">
-                  {summaryMap.author && (
-                    <span class="summary-pill">
-                      <span class="pill-key">Author</span>
-                      <span class="pill-value">{summaryMap.author}</span>
-                    </span>
-                  )}
-                  {summaryMap.audience && (
-                    <span class="summary-pill">
-                      <span class="pill-key">Audience</span>
-                      <span class="pill-value">{summaryMap.audience}</span>
-                    </span>
-                  )}
-                </span>
-              )
-            }
-          </summary>
-          <div class="panel">
+
+      <!-- Floating metadata pill -->
+      <div
+        class="metadata-pill"
+        role="complementary"
+        aria-label="Document metadata"
+      >
+        <div class="pill-collapsed">
+          <span class="pill-icon" aria-hidden="true">📄</span>
+          <span class="pill-text">{pillSummary}</span>
+        </div>
+        <div class="pill-expanded">
+          <div class="pill-header">
+            <span class="pill-header-label">Document Info</span>
+          </div>
+          <div class="pill-content">
             <dl>
               {
-                orderedEntries.map(({ key, value }) => (
-                  <div class="fm-row">
+                allEntries.map(({ key, value }) => (
+                  <div class="pill-row">
                     <dt>{key}</dt>
                     <dd>{value}</dd>
                   </div>
@@ -163,8 +112,26 @@ const contentClass = `content-body${trimFirstHeading ? " trim-heading" : ""}`;
               }
             </dl>
           </div>
-        </details>
-      </aside>
+        </div>
+      </div>
     </div>
+
+    <script>
+      // Handle touch devices - tap to toggle pill expansion
+      if ("ontouchstart" in window) {
+        const pill = document.querySelector(".metadata-pill");
+        if (pill) {
+          pill.addEventListener("click", function (e) {
+            e.stopPropagation();
+            this.classList.toggle("is-active");
+          });
+
+          // Close pill when tapping outside
+          document.addEventListener("click", function () {
+            pill.classList.remove("is-active");
+          });
+        }
+      }
+    </script>
   </body>
 </html>
