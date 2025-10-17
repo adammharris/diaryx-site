@@ -34,11 +34,6 @@ const formatSummaryValue = (value: unknown) => {
   return String(value ?? "");
 };
 
-const truncate = (str: string, maxLength: number) => {
-  if (str.length <= maxLength) return str;
-  return str.slice(0, maxLength) + "...";
-};
-
 const frontmatterRecord = frontmatter as Record<string, unknown>;
 
 // Get key summary fields
@@ -51,11 +46,7 @@ const audience = frontmatterRecord.audience
   : null;
 
 // Create compact summary line for pill
-const pillParts = [
-  title ? truncate(title, 30) : null,
-  author ? truncate(author, 20) : null,
-  audience ? truncate(audience, 25) : null,
-].filter(Boolean);
+const pillParts = [title, author, audience].filter(Boolean);
 
 const pillSummary = pillParts.join(" • ");
 
@@ -77,6 +68,7 @@ const contentClass = `content-body${trimFirstHeading ? " trim-heading" : ""}`;
       name="description"
       content={frontmatter.description || frontmatter.title}
     />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <div class="page-container">
@@ -93,7 +85,6 @@ const contentClass = `content-body${trimFirstHeading ? " trim-heading" : ""}`;
         aria-label="Document metadata"
       >
         <div class="pill-collapsed">
-          <span class="pill-icon" aria-hidden="true">📄</span>
           <span class="pill-text">{pillSummary}</span>
         </div>
         <div class="pill-expanded">
@@ -123,7 +114,7 @@ const contentClass = `content-body${trimFirstHeading ? " trim-heading" : ""}`;
         if (pill) {
           pill.addEventListener("click", function (e) {
             e.stopPropagation();
-            this.classList.toggle("is-active");
+            pill.classList.toggle("is-active");
           });
 
           // Close pill when tapping outside

@@ -285,6 +285,7 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 320px;
 }
 
 .pill-expanded {
@@ -292,9 +293,8 @@ main {
   bottom: 100%;
   right: 0;
   margin-bottom: 0.25rem;
-  width: max-content;
-  min-width: 320px;
-  max-width: 420px;
+  width: 380px;
+  max-width: calc(100vw - 5rem);
   background: var(--surface-bg);
   border: 1px solid var(--surface-border);
   border-radius: 1rem;
@@ -386,6 +386,7 @@ main {
   margin: 0;
   white-space: pre-wrap;
   word-break: break-word;
+  overflow-wrap: break-word;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   line-height: 1.5;
@@ -414,8 +415,7 @@ main {
     right: auto;
     left: 50%;
     transform: translateX(-50%) translateY(8px);
-    min-width: 280px;
-    max-width: calc(100vw - 3rem);
+    width: calc(100vw - 3rem);
   }
 
   .metadata-pill:hover .pill-expanded {
@@ -455,8 +455,7 @@ main {
     right: 1rem;
     margin-bottom: 0;
     transform: translateY(8px);
-    min-width: auto;
-    max-width: none;
+    width: auto;
   }
 
   .metadata-pill:hover .pill-expanded {
