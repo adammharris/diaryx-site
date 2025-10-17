@@ -13,7 +13,7 @@ reachable: "[Diaryx Website](https://www.diaryx.org)"
 
 ![Diaryx banner](diaryx-banner.png)
 
-## Writing connects you to others. And yourself.
+## Writing connects you to others. And to yourself.
 
 Diaryx is a simple way to share and organize your writing by focusing on _who you're writing it for_. It's a writing format and a growing set of tools.
 
