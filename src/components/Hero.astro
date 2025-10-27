@@ -11,7 +11,13 @@ const { iconSrc, title, size = "large" } = Astro.props;
 
 <div class={`hero hero-${size}`}>
   <h1 class="hero-title">{title}</h1>
-  <Image src={iconSrc} alt={`${title} icon`} class="hero-icon" />
+  <Image
+    src={iconSrc}
+    alt={`${title} icon`}
+    class="hero-icon"
+    width={200}
+    height={200}
+  />
 </div>
 
 <style>
